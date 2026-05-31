@@ -1,0 +1,13 @@
+Роль
+Email
+Пароль
+
+Администратор
+admin@company.ru
+admin123
+HR
+hr@company.ru
+hr123456
+Сотрудник
+employee@company.ru
+emp123456
