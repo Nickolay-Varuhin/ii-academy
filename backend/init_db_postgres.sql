@@ -1,17 +1,3 @@
--- ==========================================================================
--- Платформа «ИИ-Академия» — SQL-скрипт создания БД (PostgreSQL 14+)
--- Таблиц: 18 | Связей: 20+ | Нормальная форма: 3НФ
---
--- Выполнение:
---   1. Создайте БД:   CREATE DATABASE soft_skills;
---   2. Подключитесь:  \c soft_skills
---   3. Запустите:     \i init_db_postgres.sql
---
--- Или одной командой из терминала:
---   psql -U postgres -c "CREATE DATABASE soft_skills;"
---   psql -U postgres -d soft_skills -f init_db_postgres.sql
--- ==========================================================================
-
 -- Удаляем типы и таблицы если существуют (для чистого пересоздания)
 DROP TABLE IF EXISTS assignments, system_logs, hr_reports, user_responses, assessments,
     dialog_feedback, dialog_messages, dialog_sessions, scenarios,

@@ -1,7 +1,4 @@
 """ORM-модели (19 таблиц с учётом заданий от HR) — SQLAlchemy 2.0, PostgreSQL.
-
-ВАЖНО: все Enum-колонки используют name= совпадающий с названиями типов
-в init_db_postgres.sql.
 """
 import enum
 from datetime import datetime
@@ -11,8 +8,6 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import relationship
 from database import Base
 
-
-# ─── ENUM-типы (должны совпадать с SQL!) ────────────────────
 
 class RoleName(str, enum.Enum):
     ADMIN = "admin"
@@ -60,7 +55,6 @@ def _values(x):
     return [e.value for e in x]
 
 
-# ─── Аутентификация ─────────────────────────────────────────
 class Role(Base):
     __tablename__ = "roles"
     id = Column(Integer, primary_key=True)
@@ -98,7 +92,6 @@ class UserSettings(Base):
     theme = Column(String(20), default="light")
 
 
-# ─── База знаний ────────────────────────────────────────────
 class SkillCategory(Base):
     __tablename__ = "skill_categories"
     id = Column(Integer, primary_key=True)
@@ -165,7 +158,6 @@ class AnswerOption(Base):
     question = relationship("Question", back_populates="options")
 
 
-# ─── Прогресс ───────────────────────────────────────────────
 class UserSkillLevel(Base):
     __tablename__ = "user_skill_level"
     __table_args__ = (UniqueConstraint("user_id", "skill_id"),)
@@ -206,7 +198,6 @@ class PathItem(Base):
     path = relationship("LearningPath", back_populates="items")
 
 
-# ─── AI-симулятор ───────────────────────────────────────────
 class Scenario(Base):
     __tablename__ = "scenarios"
     id = Column(Integer, primary_key=True)
@@ -268,7 +259,6 @@ class DialogFeedback(Base):
     session = relationship("DialogSession", back_populates="feedback")
 
 
-# ─── Аналитика ──────────────────────────────────────────────
 class Assessment(Base):
     __tablename__ = "assessments"
     id = Column(Integer, primary_key=True)
@@ -312,7 +302,6 @@ class SystemLog(Base):
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow)
 
 
-# ─── Задания от HR сотрудникам (НОВОЕ в v3) ─────────────────
 class Assignment(Base):
     __tablename__ = "assignments"
     id = Column(Integer, primary_key=True)
